@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "testTaskDrog"
+    }
+  },
+  "defaultProject": "testTaskDrog",
+  "cli": {
+    "analytics": false
+  }
 }

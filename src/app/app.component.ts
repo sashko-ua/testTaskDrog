@@ -1,4 +1,6 @@
+import { Event } from 'rxjs';
 import { Component } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,20 +12,29 @@ export class AppComponent {
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
+  urls: any = [];
 
-  urls = [];
+  status: boolean = false;
 
-  selectImgs(e) {
-    if (e.target.files) {
-      for (let i = 0; i < File.length; i++) {
-        const reader = new FileReader();
-        reader.readAsDataURL(e.target.files[i]);
-        reader.onload = (e: any) => {
-          this.urls.push(reader.result);
-        }
+  selectImgs(e): void {
+    for (let i = 0; i < e.target.files.length; i++) {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[i]);
+
+      reader.onload = (e: any) => {
+        this.urls.push(reader.result);
       }
     }
+  }
+
+  hightlight(): void {
+    this.status = !this.status;
+  }
+
+  drop(Event: CdkDragDrop<string[]>) {
+
+  }
+
+  ngOnInit(): void {
   }
 }

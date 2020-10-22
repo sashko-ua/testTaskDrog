@@ -5,15 +5,16 @@
 
   <div class="main__wrapper">
 
-    <div class="" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div class="dropList" cdkDropList (cdkDropListDropped)="drop($event)">
       <img cdkDrag *ngFor="let url of urls" [src]="url" (click)="hightlight()"
         [ngClass]="status ? 'hightlight' : 'notHightlight'">
+      <div class="trigger">
+        <input type="file" (change)="selectImgs($event)" id="upload" multiple>
+        <label for="upload"><i class="fas fa-plus"></i></label>
+      </div>
     </div>
 
-    <div class="trigger">
-      <input type="file" (change)="selectImgs($event)" id="upload" multiple>
-      <label for="upload"><i class="fas fa-plus"></i></label>
-    </div>
+
 
   </div>
 </main>

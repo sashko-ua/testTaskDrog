@@ -1,6 +1,5 @@
-import { Event } from 'rxjs';
 import { Component } from '@angular/core';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'; //для перетягування
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,7 +15,7 @@ export class AppComponent {
 
   status: boolean = false;
 
-  selectImgs(e): void {
+  selectImgs(e): void { //Прев'юшка для фото
     for (let i = 0; i < e.target.files.length; i++) {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[i]);
@@ -27,12 +26,12 @@ export class AppComponent {
     }
   }
 
-  hightlight(): void {
+  hightlight(): void { //ДОдавання виділення
     this.status = !this.status;
   }
 
-  drop(Event: CdkDragDrop<string[]>) {
-
+  drop(e: CdkDragDrop<any[]>) { //зміна ідексу в масиві
+    moveItemInArray(this.urls, e.previousIndex, e.currentIndex);
   }
 
   ngOnInit(): void {

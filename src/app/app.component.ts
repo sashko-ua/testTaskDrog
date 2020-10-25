@@ -13,7 +13,7 @@ export class AppComponent {
 
   urls: any = [];
 
-  status: boolean = false;
+  // status: boolean = false;
 
   selectImgs(e): void { //Прев'юшка для фото
     for (let i = 0; i < e.target.files.length; i++) {
@@ -26,11 +26,17 @@ export class AppComponent {
     }
   }
 
-  hightlight(): void { //ДОдавання виділення
-    this.status = !this.status;
+  highlight(e): void { //Добавлення виділення
+    if (e.target.tagName === 'IMG') {
+
+      e.target.classList.toggle('hightlight');
+
+    }
+
+    // this.status = !this.status
   }
 
-  drop(e: CdkDragDrop<any[]>) { //зміна ідексу в масиві
+  drop(e: CdkDragDrop<any[]>): void { //зміна ідексу в масиві
     moveItemInArray(this.urls, e.previousIndex, e.currentIndex);
   }
 
